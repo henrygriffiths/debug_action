@@ -1,7 +1,7 @@
-# debug_action
+# Debug Action
 This action prints actions contexts for debugging
 
-# Usage
+## Usage
 ```yaml
 - uses: henrygriffiths/debug_action@main
   with:
@@ -21,21 +21,22 @@ This action prints actions contexts for debugging
     needs_context: ${{ toJson(needs) }}
 ````
 
-# Example for single context
+## Examples
+### Example for single context
 ```yaml
 - uses: henrygriffiths/debug_action@main
   with:
     contexts: 'env'
 ```
 
-# Example for multiple contexts
+### Example for multiple contexts
 ```yaml
 - uses: henrygriffiths/debug_action@main
   with:
     contexts: 'env,runner'
 ```
 
-# Example using matrix
+### Example using matrix
 ```yaml
 job:
   runs-on: ubuntu-latest
@@ -61,6 +62,6 @@ job:
 ```
 
 
-# License
+## License
 
 This project is released under the [MIT License](LICENSE)
