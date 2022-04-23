@@ -1,0 +1,92 @@
+name: 'Debug Action'
+on:
+  pull_request:
+    types:
+    - opened
+    - synchronize
+    - edited
+  push:
+
+jobs:
+  needs_context:
+    name: 'Needs Context'
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Needs Context'
+      run: echo 'Needs Context'
+
+  debug_action_all:
+    name: 'Debug Action All'
+    runs-on: ubuntu-latest
+    needs: [ needs_context ]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: 'Debug Action'
+      uses: ./
+      env:
+        EXAMPLE_VAR: 'Value'
+      with:
+        secrets_context: ${{ toJson(secrets) }}
+        needs_context: ${{ toJson(needs) }}
+
+  debug_action_single:
+    name: 'Debug Action Single'
+    runs-on: ubuntu-latest
+    needs: [ needs_context ]
+    steps:
+    - name: heckout
+      uses: actions/checkout@v3
+    - name: 'Debug Action'
+      uses: ./
+      env:
+        EXAMPLE_VAR: 'Value'
+      with:
+        contexts: 'env'
+        secrets_context: ${{ toJson(secrets) }}
+        needs_context: ${{ toJson(needs) }}
+
+  debug_action_multiple:
+    name: 'Debug Action Multiple'
+    runs-on: ubuntu-latest
+    needs: [ needs_context ]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: 'Debug Action'
+      uses: ./
+      env:
+        EXAMPLE_VAR: 'Value'
+      with:
+        contexts: 'github,env'
+        secrets_context: ${{ toJson(secrets) }}
+        needs_context: ${{ toJson(needs) }}
+
+  debug_action_matrix:
+    name: 'Debug Action Matrix'
+    runs-on: ubuntu-latest
+    needs: [ needs_context ]
+    strategy:
+      matrix:
+        context:
+        - github
+        - env
+        - job
+        - steps
+        - runner
+        - secrets
+        - strategy
+        - matrix
+        - needs
+        - inputs
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: 'Debug Action'
+      uses: ./
+      env:
+        EXAMPLE_VAR: 'Value'
+      with:
+        contexts: ${{ matrix.context }}
+        secrets_context: ${{ toJson(secrets) }}
+        needs_context: ${{ toJson(needs) }}
