@@ -1,0 +1,38 @@
+name: 'Debug Action'
+description: 'Dump Action Contexts'
+author: 'henrygriffiths'
+branding:
+  icon: chevron-right
+  color: blue
+
+inputs:
+  contexts:
+    description: 'Contexts to dump'
+    required: false
+    default: 'github,env,job,steps,runner,secrets,strategy,matrix,needs,inputs'
+  secrets_context:
+    description: 'Secrets Context'
+    required: false
+    default: 'Secrets Context not provided'
+  needs_context:
+    description: 'Needs Context'
+    required: false
+    default: 'Needs Context not provided'
+
+runs:
+  using: 'composite'
+  steps:
+  - name: 'Dump Contexts'
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
+      ENV_CONTEXT: ${{ toJson(env) }}
+      JOB_CONTEXT: ${{ toJson(job) }}
+      STEPS_CONTEXT: ${{ toJson(steps) }}
+      RUNNER_CONTEXT: ${{ toJson(runner) }}
+      SECRETS_CONTEXT: ${{ inputs.secrets_context }}
+      STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+      MATRIX_CONTEXT: ${{ toJson(matrix) }}
+      NEEDS_CONTEXT: ${{ inputs.needs_context }}
+      INPUTS_CONTEXT: ${{ toJson(inputs) }}
+    shell: bash
+    run: ./debug_action.sh ${{ inputs.contexts }}
