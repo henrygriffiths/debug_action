@@ -28,6 +28,13 @@ This action prints actions contexts for debugging
     contexts: 'env'
 ```
 
+# Example for multiple contexts
+```yaml
+- uses: henrygriffiths/debug_action@main
+  with:
+    contexts: 'env,runner'
+```
+
 # Example using matrix
 ```yaml
 job:
