@@ -3,7 +3,7 @@ This action prints actions contexts for debugging
 
 ## Usage
 ```yaml
-- uses: henrygriffiths/debug_action@main
+- uses: henrygriffiths/debug_action@v1
   with:
     # Optional
     # Specify which contexts to print
@@ -24,14 +24,14 @@ This action prints actions contexts for debugging
 ## Examples
 ### Example for single context
 ```yaml
-- uses: henrygriffiths/debug_action@main
+- uses: henrygriffiths/debug_action@v1
   with:
     contexts: 'env'
 ```
 
 ### Example for multiple contexts
 ```yaml
-- uses: henrygriffiths/debug_action@main
+- uses: henrygriffiths/debug_action@v1
   with:
     contexts: 'env,runner'
 ```
@@ -54,7 +54,7 @@ job:
       - needs
       - inputs
   steps:
-  - uses: henrygriffiths/debug_action@main
+  - uses: henrygriffiths/debug_action@v1
     with:
       contexts: ${{ matrix.context }}
       secrets_context: ${{ toJson(secrets) }}
