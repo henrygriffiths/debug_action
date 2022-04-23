@@ -2,11 +2,11 @@
 
 echo -e '====== Dump Contexts ======'
 
-actions=$(echo $1 | sed 's/[^A-Za-z,]//g' | tr '[:upper:]' '[:lower:]')
+contexts=$(echo $1 | sed 's/[^A-Za-z,]//g' | tr '[:upper:]' '[:lower:]')
 
-actions_last=${actions##*,}
+contexts_last=${contexts##*,}
 
-for x in $(echo $actions | tr ',' '\n')
+for x in $(echo $contexts | tr ',' '\n')
 do
     if [ $x == 'github' ]; then
         echo -e '>>>>>> GitHub Context'
@@ -51,7 +51,7 @@ do
     else
         echo -e '======= Context NOT FOUND ======='
     fi
-    if [ ! $x == $actions_last ]; then
+    if [ ! $x == $contexts_last ]; then
         printf '\n\n\n'
     fi
 done
