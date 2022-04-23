@@ -35,4 +35,4 @@ runs:
       NEEDS_CONTEXT: ${{ inputs.needs_context }}
       INPUTS_CONTEXT: ${{ toJson(inputs) }}
     shell: bash
-    run: ./debug_action.sh ${{ inputs.contexts }}
+    run: $GITHUB_ACTION_PATH/debug_action.sh ${{ inputs.contexts }}
