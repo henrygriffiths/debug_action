@@ -2,7 +2,7 @@ name: 'Debug Action Contexts'
 description: 'Dump Action Contexts'
 author: 'henrygriffiths'
 branding:
-  icon: chevron-right
+  icon: terminal
   color: blue
 
 inputs:
