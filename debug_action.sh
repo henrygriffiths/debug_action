@@ -16,6 +16,10 @@ do
         echo -e "\033[1;33m>>>>>> Env Context\033[0m"
         echo -e "$ENV_CONTEXT"
         echo -e "\033[1;33m<<<<<< Env Context\033[0m"
+    elif [ $x == 'vars' ]; then
+        echo -e "\033[1;33m>>>>>> Vars Context\033[0m"
+        echo -e "$VARS_CONTEXT"
+        echo -e "\033[1;33m<<<<<< Vars Context\033[0m"
     elif [ $x == 'job' ]; then
         echo -e "\033[1;33m>>>>>> Job Context\033[0m"
         echo -e "$JOB_CONTEXT"

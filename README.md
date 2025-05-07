@@ -7,8 +7,13 @@ This action prints actions contexts for debugging
   with:
     # Optional
     # Specify which contexts to print
-    # Default: 'github,env,job,steps,runner,secrets,strategy,matrix,needs,inputs'
+    # Default: 'github,env,vars,job,steps,runner,secrets,strategy,matrix,needs,inputs'
     contexts: ''
+    
+    # Optional
+    # Provide vars context to action, as vars context is not available in composite workflows
+    # Default: null
+    vars_context: ${{ toJson(vars) }}
     
     # Optional
     # Provide secrets context to action, as secrets context is not available in composite workflows
@@ -45,6 +50,7 @@ job:
       context:
       - github
       - env
+      - vars
       - job
       - steps
       - runner
@@ -57,6 +63,7 @@ job:
   - uses: henrygriffiths/debug_action@v1
     with:
       contexts: ${{ matrix.context }}
+      vars_context: ${{ toJson(vars) }}
       secrets_context: ${{ toJson(secrets) }}
       needs_context: ${{ toJson(needs) }}
 ```
