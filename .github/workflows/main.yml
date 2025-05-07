@@ -25,6 +25,7 @@ jobs:
       env:
         EXAMPLE_VAR: 'Value'
       with:
+        vars_context: ${{ toJson(vars) }}
         secrets_context: ${{ toJson(secrets) }}
         needs_context: ${{ toJson(needs) }}
 
@@ -40,6 +41,7 @@ jobs:
       env:
         EXAMPLE_VAR: 'Value'
       with:
+        vars_context: ${{ toJson(vars) }}
         secrets_context: ${{ toJson(secrets) }}
         needs_context: ${{ toJson(needs) }}
 
@@ -56,6 +58,7 @@ jobs:
         EXAMPLE_VAR: 'Value'
       with:
         contexts: 'env'
+        vars_context: ${{ toJson(vars) }}
         secrets_context: ${{ toJson(secrets) }}
         needs_context: ${{ toJson(needs) }}
 
@@ -72,6 +75,7 @@ jobs:
         EXAMPLE_VAR: 'Value'
       with:
         contexts: 'github,env'
+        vars_context: ${{ toJson(vars) }}
         secrets_context: ${{ toJson(secrets) }}
         needs_context: ${{ toJson(needs) }}
 
@@ -84,6 +88,7 @@ jobs:
         context:
         - github
         - env
+        - vars
         - job
         - steps
         - runner
@@ -101,5 +106,6 @@ jobs:
         EXAMPLE_VAR: 'Value'
       with:
         contexts: ${{ matrix.context }}
+        vars_context: ${{ toJson(vars) }}
         secrets_context: ${{ toJson(secrets) }}
         needs_context: ${{ toJson(needs) }}

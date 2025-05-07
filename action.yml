@@ -9,7 +9,11 @@ inputs:
   contexts:
     description: 'Contexts to dump'
     required: false
-    default: 'github,env,job,steps,runner,secrets,strategy,matrix,needs,inputs'
+    default: 'github,env,vars,job,steps,runner,secrets,strategy,matrix,needs,inputs'
+  vars_context:
+    description: 'Vars Context'
+    required: false
+    default: 'Vars Context not provided'
   secrets_context:
     description: 'Secrets Context'
     required: false
@@ -26,6 +30,7 @@ runs:
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
       ENV_CONTEXT: ${{ toJson(env) }}
+      VARS_CONTEXT: ${{ inputs.vars_context }}
       JOB_CONTEXT: ${{ toJson(job) }}
       STEPS_CONTEXT: ${{ toJson(steps) }}
       RUNNER_CONTEXT: ${{ toJson(runner) }}
